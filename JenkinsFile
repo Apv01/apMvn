@@ -1,36 +1,47 @@
 pipeline {
     agent any
 
-
+    
     stages {
-        stage('github') {
+        stage('Githib') {
             steps {
                 // Get some code from a GitHub repository
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rajudevops1543/mvn.git']])
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Apv01/apMvn.git']])
+                  
             }
+            
         }
-        stage('maven') {
-            steps {
+
+        stage('Maven'){
+            steps{
+
                 // Run Maven on a Unix agent.
-                bat "mvn -f javaapp/pom.xml clean package"
+                bat "mvn -version"
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
+
+           
         }
-        stage('tomcat') {
-            steps {
-                // Run Maven on a Unix agent.
-                bat "mvn -f javaapp/pom.xml clean tomcat7:deploy"
+        
+        stage('tomcat'){
+            steps{
+                
+                bat "mvn -f javaapp/pom.xml clean tomcat7:deploy "
+                
+                bat "echo done deploying!"
+                
+               
+                
             }
         }
-        stage('docker') {
-            steps {
-                // Run Maven on a Unix agent.
-                bat "echo building docker images"
-
+        
+        stage('docker'){
+            steps{
+                
+                bat "echo building docker image"
             }
         }
-
     }
 }
