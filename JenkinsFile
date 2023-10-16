@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-label "ubuntuAgent"
-}
+    agent any
 
     
     stages {
