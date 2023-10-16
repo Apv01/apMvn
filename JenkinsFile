@@ -44,5 +44,11 @@ pipeline {
                 bat "echo building docker image"
             }
         }
+
+stage('testtingPoll'){
+steps{
+echo "pooling done"
+}
+}
     }
 }
